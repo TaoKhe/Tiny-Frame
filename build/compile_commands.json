@@ -1,0 +1,20 @@
+[
+{
+  "directory": "D:/project/TinyFrame/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe  @CMakeFiles/tf.dir/includes_C.rsp -g -o CMakeFiles\\tf.dir\\demo_vi.c.obj -c D:\\project\\TinyFrame\\demo_vi.c",
+  "file": "D:/project/TinyFrame/demo_vi.c",
+  "output": "CMakeFiles/tf.dir/demo_vi.c.obj"
+},
+{
+  "directory": "D:/project/TinyFrame/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe  @CMakeFiles/tf.dir/includes_C.rsp -g -o CMakeFiles\\tf.dir\\TinyFrame.c.obj -c D:\\project\\TinyFrame\\TinyFrame.c",
+  "file": "D:/project/TinyFrame/TinyFrame.c",
+  "output": "CMakeFiles/tf.dir/TinyFrame.c.obj"
+},
+{
+  "directory": "D:/project/TinyFrame/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe  @CMakeFiles/tf.dir/includes_C.rsp -g -o CMakeFiles\\tf.dir\\demo\\utils.c.obj -c D:\\project\\TinyFrame\\demo\\utils.c",
+  "file": "D:/project/TinyFrame/demo/utils.c",
+  "output": "CMakeFiles/tf.dir/demo/utils.c.obj"
+}
+]

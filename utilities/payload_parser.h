@@ -3,20 +3,20 @@
 
 /**
  * PayloadParser, part of the TinyFrame utilities collection
- * 
+ *
  * (c) Ondřej Hruška, 2016-2017. MIT license.
- * 
+ *
  * This module helps you with parsing payloads (not only from TinyFrame).
- * 
- * The parser supports big and little-endian which is selected when 
+ *
+ * The parser supports big and little-endian which is selected when
  * initializing it or by accessing the bigendian struct field.
  *
- * The parser performs bounds checking and calls the provided handler when 
+ * The parser performs bounds checking and calls the provided handler when
  * the requested read doesn't have enough data. Use the callback to take
  * appropriate action, e.g. report an error.
- * 
+ *
  * If the handler function is not defined, the pb->ok flag is set to false
- * (use this to check for success), and further reads won't have any effect 
+ * (use this to check for success), and further reads won't have any effect
  * and always result in 0 or empty array.
  */
 
@@ -28,31 +28,32 @@
 typedef struct PayloadParser_ PayloadParser;
 
 /**
- * Empty buffer handler. 
- * 
+ * Empty buffer handler.
+ *
  * 'needed' more bytes should be read but the end was reached.
- * 
- * Return true if the problem was solved (e.g. new data loaded into 
+ *
+ * Return true if the problem was solved (e.g. new data loaded into
  * the buffer and the 'current' pointer moved to the beginning).
- *  
+ *
  * If false is returned, the 'ok' flag on the struct is set to false
  * and all following reads will fail / return 0.
  */
 typedef bool (*pp_empty_handler)(PayloadParser *pp, uint32_t needed);
 
-struct PayloadParser_ {
-    const uint8_t *start;   //!< Pointer to the beginning of the buffer
-    const uint8_t *current; //!< Pointer to the next byte to be read
-    const uint8_t *end;     //!< Pointer to the end of the buffer (start + length)
+struct PayloadParser_
+{
+    const uint8_t *start;           //!< Pointer to the beginning of the buffer
+    const uint8_t *current;         //!< Pointer to the next byte to be read
+    const uint8_t *end;             //!< Pointer to the end of the buffer (start + length)
     pp_empty_handler empty_handler; //!< Callback for buffer underrun
-    bool bigendian;   //!< Flag to use big-endian parsing
-    bool ok;          //!< Indicates that all reads were successful
+    bool bigendian;                 //!< Flag to use big-endian parsing
+    bool ok;                        //!< Indicates that all reads were successful
 };
 
 // --- initializer helper macros ---
 
 /** Start the parser. */
-#define pp_start_e(buf, length, bigendian, empty_handler) ((PayloadParser){buf, buf, (buf)+(length), empty_handler, bigendian, 1})
+#define pp_start_e(buf, length, bigendian, empty_handler) ((PayloadParser){buf, buf, (buf) + (length), empty_handler, bigendian, 1})
 
 /** Start the parser in big-endian mode */
 #define pp_start_be(buf, length, empty_handler) pp_start_e(buf, length, 1, empty_handler)
@@ -69,8 +70,11 @@ struct PayloadParser_ {
 #define pp_length(pp) ((pp)->end - (pp)->current)
 
 /** Reset the current pointer to start */
-#define pp_rewind(pp) do { pp->current = pp->start; } while (0)
-
+#define pp_rewind(pp)            \
+    do                           \
+    {                            \
+        pp->current = pp->start; \
+    } while (0)
 
 /**
  * @brief Get the remainder of the buffer.
@@ -138,6 +142,5 @@ uint32_t pp_string(PayloadParser *pp, char *buffer, uint32_t maxlen);
  * @return actual number of bytes, excluding terminator
  */
 uint32_t pp_buf(PayloadParser *pp, uint8_t *buffer, uint32_t maxlen);
-
 
 #endif // PAYLOAD_PARSER_H

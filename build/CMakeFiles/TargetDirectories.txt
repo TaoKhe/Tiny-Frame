@@ -1,0 +1,3 @@
+D:/project/TinyFrame/build/CMakeFiles/tf.dir
+D:/project/TinyFrame/build/CMakeFiles/edit_cache.dir
+D:/project/TinyFrame/build/CMakeFiles/rebuild_cache.dir
